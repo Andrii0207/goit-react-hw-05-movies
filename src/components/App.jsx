@@ -1,8 +1,11 @@
 import { Route, Routes } from 'react-router-dom';
 import { About } from '../pages/About';
 import { Home } from '../pages/Home';
+import { ProductDetails } from '../pages/ProductDetails';
 import { Products } from '../pages/Products';
-import { NotFound } from '../pages/NotFound';
+import { Mission } from './Mission';
+import { Team } from './Team';
+import { Reviews } from './Reviews';
 import { Container, Header, Logo, Link } from './App.styled';
 
 export const App = () => {
@@ -25,9 +28,13 @@ export const App = () => {
       </Header>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<About />}>
+          <Route path="mission" element={<Mission />} />
+          <Route path="team" element={<Team />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
         <Route path="/products" element={<Products />} />
-        <Route path="*" element={<NotFound />} />
+        <Route path="/products/:id" element={<ProductDetails />} />
       </Routes>
     </Container>
   );
