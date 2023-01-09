@@ -1,19 +1,30 @@
 import { Route, Routes } from 'react-router-dom';
+import { SharedLayout } from './SharedLayout/SharedLayout';
+import { Movies } from '../pages/Movies/Movies';
+import { Home } from '../pages/Home/Home';
 
 export const App = () => {
   return (
     <div
       style={{
         height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
+        // display: 'flex',
+        justifyContent: 'left',
+        alignItems: 'left',
         fontSize: 40,
         color: '#010101',
       }}
     >
       <Routes>
-        <Route path="/" element={<div>React homework template</div>}></Route>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<Home />}></Route>
+          <Route path="movies" element={<Movies />}></Route>
+          <Route path="/movies/:id" element={<>MovieDetails component</>}>
+            <Route path="cast">{<>cast_component</>}</Route>
+            <Route path="reviews">{<>reviews_component</>}</Route>
+          </Route>
+          <Route path="*" element={<Home />} />
+        </Route>
       </Routes>
     </div>
   );
