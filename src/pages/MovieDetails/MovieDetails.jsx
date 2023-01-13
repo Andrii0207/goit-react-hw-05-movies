@@ -20,13 +20,21 @@ export const MovieDetails = () => {
 
   console.log('MovieDetails movie.data', movie);
 
-  const { id } = movie;
-  const base_poster_url = 'https://image.tmdb.org/t/p/w500/';
+  const { id, poster_path, release_date, title, name } = movie;
+  const base_poster_url = 'https://image.tmdb.org/t/p/w500';
+  const image_plug =
+    'https://static7.depositphotos.com/1021974/739/i/950/depositphotos_7397821-stock-photo-cinema.jpg';
 
   return (
     <div>
+      <p>{id}</p>
+
+      <img
+        src={poster_path ? `${base_poster_url}` + poster_path : image_plug}
+        alt={title || name}
+      />
       <p>useParams: {movieId}</p>
-      <>{id}</>
+      <div>{release_date}</div>
     </div>
   );
 };
