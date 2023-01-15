@@ -1,8 +1,8 @@
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { getMovieDetailsById } from 'service/api';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const location = useLocation();
 
@@ -19,9 +19,6 @@ export const MovieDetails = () => {
   if (!movie) {
     return;
   }
-  // console.log(location.state.from);
-
-  // console.log('MovieDetails movie.data', movie);
 
   const { poster_path, release_date, title, name, overview, genres } = movie;
   const base_poster_url = 'https://image.tmdb.org/t/p/w500';
@@ -51,7 +48,6 @@ export const MovieDetails = () => {
             : 'There are no genres'}
         </p>
       </div>
-
       <div>
         <p>
           <b>Additional information</b>
@@ -64,7 +60,11 @@ export const MovieDetails = () => {
           Reviews
         </Link>
       </div>
-      <Outlet />
+      <Suspense fallback={<div>Loading ...</div>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
+
+export default MovieDetails;

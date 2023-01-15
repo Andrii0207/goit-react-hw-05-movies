@@ -2,7 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieCredits } from 'service/api';
 
-export const Cast = () => {
+const Cast = () => {
   const [cast, setCast] = useState([]);
 
   const { movieId } = useParams();
@@ -19,11 +19,10 @@ export const Cast = () => {
 
   const poster_url = 'https://image.tmdb.org/t/p/w500';
 
-  // console.log(cast);
-
   return (
     <div>
       <ul>
+        {}
         {cast.map(({ character, name, profile_path, id }) => {
           return (
             <li key={id}>
@@ -37,3 +36,5 @@ export const Cast = () => {
     </div>
   );
 };
+
+export default Cast;
