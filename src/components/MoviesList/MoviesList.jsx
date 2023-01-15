@@ -1,4 +1,4 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { MoviesListName, NavLink } from './MoviesList.styled';
 
 export const MoviesList = ({ movies }) => {
