@@ -1,6 +1,8 @@
 import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { getMovieDetailsById } from 'service/api';
+// import defaultImage from '../../components/default.jpeg';
+import defaultImage from '../../service/default.png';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -22,15 +24,13 @@ const MovieDetails = () => {
 
   const { poster_path, release_date, title, name, overview, genres } = movie;
   const base_poster_url = 'https://image.tmdb.org/t/p/w500';
-  const image_plug =
-    'https://static7.depositphotos.com/1021974/739/i/950/depositphotos_7397821-stock-photo-cinema.jpg';
 
   return (
     <div>
       <Link to={goBackLink}>Go back</Link>
       <div>
         <img
-          src={poster_path ? `${base_poster_url}` + poster_path : image_plug}
+          src={poster_path ? `${base_poster_url}` + poster_path : defaultImage}
           alt={title || name}
         />
         <div>

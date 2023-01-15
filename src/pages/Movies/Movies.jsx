@@ -23,7 +23,6 @@ const Movies = () => {
         if (responce.data.results.length === 0) {
           return Notiflix.Notify.warning('Sorry, we have found any films... Try again');
         }
-
         setMovies(responce.data.results);
       })
       .catch(error => console.log(error.message));
