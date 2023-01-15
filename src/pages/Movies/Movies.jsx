@@ -32,7 +32,7 @@ export const Movies = () => {
   return (
     <div>
       <SearchBox onChange={searchMovie} />
-      {movies.length > 0 && <MoviesList movies={movies} state={{ a: 5 }} />}
+      {movies.length > 0 && <MoviesList movies={movies} />}
     </div>
   );
 };

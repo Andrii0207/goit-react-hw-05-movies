@@ -56,9 +56,13 @@ export const MovieDetails = () => {
         <p>
           <b>Additional information</b>
         </p>
-        <Link to="cast">Cast</Link>
+        <Link to="cast" stage={{ goBackLink: location }}>
+          Cast
+        </Link>
         <p></p>
-        <Link to="reviews">Reviews</Link>
+        <Link to="reviews" stage={{ goBackLink: location }}>
+          Reviews
+        </Link>
       </div>
       <Outlet />
     </div>
