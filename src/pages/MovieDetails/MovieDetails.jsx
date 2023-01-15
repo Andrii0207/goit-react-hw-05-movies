@@ -2,7 +2,22 @@ import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { getMovieDetailsById } from 'service/api';
 // import defaultImage from '../../components/default.jpeg';
+import {
+  ImgWrapper,
+  FilmNameWrapper,
+  FilmName,
+  FilmRelease,
+  OverviewName,
+  OverviewText,
+  GenresName,
+  OverviewGenres,
+  NavLink,
+  AddInfo,
+  CastInfo,
+  ReviewInfo,
+} from './MovieDetails.styled';
 import defaultImage from '../../service/default.png';
+// console.log(defaultImage);
 
 const MovieDetails = () => {
   const { movieId } = useParams();
@@ -27,38 +42,38 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link to={goBackLink}>Go back</Link>
-      <div>
-        <img
-          src={poster_path ? `${base_poster_url}` + poster_path : defaultImage}
-          alt={title || name}
-        />
+      <NavLink to={goBackLink}>Go back</NavLink>
+      <ImgWrapper>
         <div>
-          <h1>{title}</h1>
-          <p>({release_date ? release_date.slice(0, 4) : release_date})</p>
+          <img
+            src={poster_path ? `${base_poster_url}` + poster_path : defaultImage}
+            alt={title || name}
+            width="250px"
+          />
         </div>
-      </div>
+        <FilmNameWrapper>
+          <FilmName>{title}</FilmName>
+          <FilmRelease>({release_date ? release_date.slice(0, 4) : release_date})</FilmRelease>
+          <OverviewName>Overview</OverviewName>
+          <OverviewText>{overview}</OverviewText>
+          <GenresName>Genres</GenresName>
+          <OverviewGenres>
+            {genres && genres.length > 0
+              ? genres.map(genre => genre.name).join(', ')
+              : 'There are no genres'}
+          </OverviewGenres>
+        </FilmNameWrapper>
+      </ImgWrapper>
+
       <div>
-        <h2>Overview</h2>
-        <p>{overview}</p>
-        <h2>Genres</h2>
-        <p>
-          {genres && genres.length > 0
-            ? genres.map(genre => genre.name).join(', ')
-            : 'There are no genres'}
-        </p>
-      </div>
-      <div>
-        <p>
-          <b>Additional information</b>
-        </p>
-        <Link to="cast" stage={{ goBackLink: location }}>
+        <AddInfo>Additional information</AddInfo>
+        <CastInfo to="cast" stage={{ goBackLink: location }}>
           Cast
-        </Link>
-        <p></p>
-        <Link to="reviews" stage={{ goBackLink: location }}>
+        </CastInfo>
+
+        <ReviewInfo to="reviews" stage={{ goBackLink: location }}>
           Reviews
-        </Link>
+        </ReviewInfo>
       </div>
       <Suspense fallback={<div>Loading ...</div>}>
         <Outlet />

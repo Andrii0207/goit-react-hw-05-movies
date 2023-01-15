@@ -1,5 +1,6 @@
 import Notiflix from 'notiflix';
 import { useState } from 'react';
+import { Input, SearchButton } from './SearchBox.styled';
 
 export const SearchBox = ({ onChange }) => {
   const [query, setQuery] = useState('');
@@ -22,8 +23,8 @@ export const SearchBox = ({ onChange }) => {
 
   return (
     <form onSubmit={onHandleSubmit}>
-      <input type="text" placeholder="enter movie name to search" onChange={handleChange} />
-      <button type="submit">search</button>
+      <Input type="text" placeholder="enter movie name to search" onChange={handleChange} />
+      <SearchButton type="submit">search</SearchButton>
     </form>
   );
 };
