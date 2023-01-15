@@ -1,24 +1,27 @@
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieDetailsById } from 'service/api';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
+  const location = useLocation();
 
   const [movie, setMovie] = useState({});
-  const [error, setError] = useState(null);
+
+  const goBackLink = location.state?.from ?? '/';
 
   useEffect(() => {
     getMovieDetailsById(Number(movieId))
       .then(movie => setMovie(movie.data))
-      .catch(error => setError(error.message));
+      .catch(error => console.log(error.message));
   }, [movieId]);
 
   if (!movie) {
     return;
   }
+  // console.log(location.state.from);
 
-  console.log('MovieDetails movie.data', movie);
+  // console.log('MovieDetails movie.data', movie);
 
   const { poster_path, release_date, title, name, overview, genres } = movie;
   const base_poster_url = 'https://image.tmdb.org/t/p/w500';
@@ -27,7 +30,7 @@ export const MovieDetails = () => {
 
   return (
     <div>
-      <Link to="/Home">Go back</Link>
+      <Link to={goBackLink}>Go back</Link>
       <div>
         <img
           src={poster_path ? `${base_poster_url}` + poster_path : image_plug}

@@ -1,4 +1,4 @@
-// import Notiflix from 'notiflix';
+import Notiflix from 'notiflix';
 import { useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { SearchBox } from 'components/SearchBox/SearchBox';
@@ -12,7 +12,6 @@ export const Movies = () => {
 
   const searchMovie = movieName => {
     setSearchParams(movieName !== '' ? { filter: movieName } : {});
-    // console.log(movieName);
   };
 
   useEffect(() => {
@@ -20,14 +19,20 @@ export const Movies = () => {
       return;
     }
     serchMoviesByName(searchValue)
-      .then(responce => setMovies(responce.data.results))
+      .then(responce => {
+        if (responce.data.results.length === 0) {
+          return Notiflix.Notify.warning('Sorry, we have found any films... Try again');
+        }
+
+        setMovies(responce.data.results);
+      })
       .catch(error => console.log(error.message));
   }, [searchValue]);
 
   return (
     <div>
       <SearchBox onChange={searchMovie} />
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies.length > 0 && <MoviesList movies={movies} state={{ a: 5 }} />}
     </div>
   );
 };

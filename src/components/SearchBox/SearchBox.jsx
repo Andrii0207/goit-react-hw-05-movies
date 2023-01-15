@@ -12,8 +12,9 @@ export const SearchBox = ({ onChange }) => {
     evt.preventDefault();
 
     if (!query) {
-      return Notiflix.Notify.info('Please enter film name');
+      return Notiflix.Notify.info('Please enter a film name');
     }
+
     onChange(query);
 
     setQuery('');
