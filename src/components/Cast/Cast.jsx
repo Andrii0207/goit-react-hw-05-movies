@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieCredits } from 'service/api';
 import { ActorPhoto, ActorName, CharacterName, ImgList } from './Cast.styled';
+import defaultImage from '../../service/default.png';
 
 const Cast = () => {
   const [cast, setCast] = useState([]);
@@ -27,7 +28,12 @@ const Cast = () => {
         {cast.map(({ character, name, profile_path, id }) => {
           return (
             <ImgList key={id}>
-              <ActorPhoto src={`${poster_url + profile_path}`} alt={name} width="120" />
+              {profile_path ? (
+                <ActorPhoto src={`${poster_url + profile_path}`} alt={name} width="120" />
+              ) : (
+                defaultImage
+              )}
+
               <ActorName>{name}</ActorName>
               {character && <CharacterName>Character: {character}</CharacterName>}
             </ImgList>

@@ -1,6 +1,7 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
 import { useState, useEffect, Suspense } from 'react';
 import { getMovieDetailsById } from 'service/api';
+import defaultImage from '../../service/default.png';
 // import defaultImage from '../../components/default.jpeg';
 import {
   ImgWrapper,
@@ -16,8 +17,6 @@ import {
   CastInfo,
   ReviewInfo,
 } from './MovieDetails.styled';
-import defaultImage from '../../service/default.png';
-// console.log(defaultImage);
 
 const MovieDetails = () => {
   const { movieId } = useParams();

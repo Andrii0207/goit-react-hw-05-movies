@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { getMovieReviews } from 'service/api';
-import { ReviewsList, ReviewsDescription, ReviewsName } from './Reviews.styled';
+import { ReviewsList, ReviewsDescription, ReviewsName, NoAnswer } from './Reviews.styled';
 
 const Reviews = () => {
   const [reviews, setReviews] = useState([]);
@@ -28,7 +28,7 @@ const Reviews = () => {
         })
       ) : (
         <div>
-          <p>There are no reviews for this movie</p>
+          <NoAnswer>There are no reviews for this movie</NoAnswer>
         </div>
       )}
     </div>

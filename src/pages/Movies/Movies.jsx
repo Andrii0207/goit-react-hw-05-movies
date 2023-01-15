@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { SearchBox } from 'components/SearchBox/SearchBox';
 import { serchMoviesByName } from 'service/api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
+import movieLibrary from '../../service/default2.jpeg';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -31,7 +32,7 @@ const Movies = () => {
   return (
     <div>
       <SearchBox onChange={searchMovie} />
-      {movies.length > 0 && <MoviesList movies={movies} />}
+      {movies.length > 0 ? <MoviesList movies={movies} /> : movieLibrary}
     </div>
   );
 };
