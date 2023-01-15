@@ -7,21 +7,20 @@ export const Reviews = () => {
   const { movieId } = useParams();
 
   useEffect(() => {
-    getMovieReviews(movieId).then(resp => console.log(resp.data));
+    getMovieReviews(movieId).then(resp => setReviews(resp.data.results));
   }, [movieId]);
 
-  if (reviews) {
+  if (!reviews) {
     return null;
   }
-  console.log('Reviews reviews:', reviews);
 
   return (
     <div>
       {reviews.map(({ id, author, content }) => {
         return (
           <li key={id}>
-            <p>Author</p>
-            <p>Content</p>
+            <p>{author}</p>
+            <p>{content}</p>
           </li>
         );
       })}
