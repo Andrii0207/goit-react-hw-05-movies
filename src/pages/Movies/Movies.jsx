@@ -4,15 +4,15 @@ import { useEffect, useState } from 'react';
 import { SearchBox } from 'components/SearchBox/SearchBox';
 import { serchMoviesByName } from 'service/api';
 import { MoviesList } from 'components/MoviesList/MoviesList';
-// import movieLibrary from '../../service/default2.jpeg';
+import movieLibrary from '../../service/default3.jpeg';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const searchValue = searchParams.get('filter') ?? '';
 
-  const defaultImage =
-    'https://domovyk.in.ua/wa-data/public/shop/products/12/57/115712/images/53923860/53923860.970.jpg';
+  // const defaultImage =
+  //   'https://domovyk.in.ua/wa-data/public/shop/products/12/57/115712/images/53923860/53923860.970.jpg';
 
   const searchMovie = movieName => {
     setSearchParams(movieName !== '' ? { filter: movieName } : {});
@@ -38,7 +38,7 @@ const Movies = () => {
       {movies.length > 0 ? (
         <MoviesList movies={movies} />
       ) : (
-        <img src={defaultImage} alt={defaultImage} width="100%" />
+        <img src={movieLibrary} alt={movieLibrary} width="100%" />
       )}
     </div>
   );
