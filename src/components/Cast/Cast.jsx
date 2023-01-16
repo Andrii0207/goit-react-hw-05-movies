@@ -28,12 +28,13 @@ const Cast = () => {
         {cast.map(({ character, name, profile_path, id }) => {
           return (
             <ImgList key={id}>
-              {profile_path ? (
-                <ActorPhoto src={`${poster_url + profile_path}`} alt={name} width="120" />
-              ) : (
-                defaultImage
-              )}
-
+              {
+                <ActorPhoto
+                  src={profile_path ? `${poster_url + profile_path}` : defaultImage}
+                  alt={name}
+                  width="120"
+                />
+              }
               <ActorName>{name}</ActorName>
               {character && <CharacterName>Character: {character}</CharacterName>}
             </ImgList>

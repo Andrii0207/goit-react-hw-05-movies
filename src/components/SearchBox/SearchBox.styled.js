@@ -3,6 +3,7 @@ import styled from 'styled-components';
 export const Input = styled.input`
   width: 250px;
   height: 30px;
+  margin-bottom: 30px;
 `;
 
 export const SearchButton = styled.button`

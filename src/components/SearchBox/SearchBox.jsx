@@ -17,8 +17,7 @@ export const SearchBox = ({ onChange }) => {
     }
 
     onChange(query);
-
-    setQuery('');
+    evt.target.reset();
   };
 
   return (
