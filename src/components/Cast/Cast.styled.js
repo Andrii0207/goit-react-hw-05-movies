@@ -19,3 +19,8 @@ export const CharacterName = styled.p`
 export const ImgList = styled.li`
   list-style: none;
 `;
+
+export const NoAnswer = styled.p`
+  font-size: 30px;
+  font-weight: 400;
+`;

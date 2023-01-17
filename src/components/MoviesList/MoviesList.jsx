@@ -4,6 +4,8 @@ import { MoviesListName, NavLink } from './MoviesList.styled';
 export const MoviesList = ({ movies }) => {
   const location = useLocation();
 
+  console.log('MoviesList location', location);
+
   return (
     <ul>
       {movies.map(({ id, title, name }) => (

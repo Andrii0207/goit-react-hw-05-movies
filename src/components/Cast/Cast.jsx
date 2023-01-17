@@ -1,7 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import { getMovieCredits } from 'service/api';
-import { ActorPhoto, ActorName, CharacterName, ImgList } from './Cast.styled';
+import { ActorPhoto, ActorName, CharacterName, ImgList, NoAnswer } from './Cast.styled';
 import defaultImage from '../../service/default.png';
 
 const Cast = () => {
@@ -24,22 +24,25 @@ const Cast = () => {
   return (
     <div>
       <ul>
-        {}
-        {cast.map(({ character, name, profile_path, id }) => {
-          return (
-            <ImgList key={id}>
-              {
-                <ActorPhoto
-                  src={profile_path ? `${poster_url + profile_path}` : defaultImage}
-                  alt={name}
-                  width="120"
-                />
-              }
-              <ActorName>{name}</ActorName>
-              {character && <CharacterName>Character: {character}</CharacterName>}
-            </ImgList>
-          );
-        })}
+        {!cast.length ? (
+          cast.map(({ character, name, profile_path, id }) => {
+            return (
+              <ImgList key={id}>
+                {
+                  <ActorPhoto
+                    src={profile_path ? `${poster_url + profile_path}` : defaultImage}
+                    alt={name}
+                    width="120"
+                  />
+                }
+                <ActorName>{name}</ActorName>
+                {character && <CharacterName>Character: {character}</CharacterName>}
+              </ImgList>
+            );
+          })
+        ) : (
+          <NoAnswer>There are no casts for this movie</NoAnswer>
+        )}
       </ul>
     </div>
   );

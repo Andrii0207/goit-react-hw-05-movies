@@ -1,8 +1,7 @@
 import { Outlet, useParams, useLocation } from 'react-router-dom';
-import { useState, useEffect, Suspense } from 'react';
+import { useState, useEffect, Suspense, useRef } from 'react';
 import { getMovieDetailsById } from 'service/api';
 import defaultImage from '../../service/default.png';
-// import defaultImage from '../../components/default.jpeg';
 import {
   ImgWrapper,
   FilmNameWrapper,
@@ -24,7 +23,8 @@ const MovieDetails = () => {
 
   const [movie, setMovie] = useState({});
 
-  const goBackLink = location.state?.from ?? '/';
+  const goBackLink = location.state?.from ?? '/movies';
+  const refLocation = useRef(location.state?.location);
 
   useEffect(() => {
     getMovieDetailsById(Number(movieId))
@@ -41,7 +41,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <NavLink to={goBackLink}>Go back</NavLink>
+      <NavLink to={refLocation.current ?? goBackLink}>Go back</NavLink>
       <ImgWrapper>
         <div>
           <img
@@ -66,11 +66,11 @@ const MovieDetails = () => {
 
       <div>
         <AddInfo>Additional information</AddInfo>
-        <CastInfo to="cast" stage={{ goBackLink: location }}>
+        <CastInfo to="cast" state={{ from: goBackLink }}>
           Cast
         </CastInfo>
 
-        <ReviewInfo to="reviews" stage={{ goBackLink: location }}>
+        <ReviewInfo to="reviews" state={{ from: goBackLink }}>
           Reviews
         </ReviewInfo>
       </div>
