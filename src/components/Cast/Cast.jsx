@@ -24,7 +24,7 @@ const Cast = () => {
   return (
     <div>
       <ul>
-        {!cast.length ? (
+        {cast.length ? (
           cast.map(({ character, name, profile_path, id }) => {
             return (
               <ImgList key={id}>
